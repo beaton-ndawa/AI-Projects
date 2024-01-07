@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Heart Rate Failure Prediction</title>
+    <link
+      rel="stylesheet"
+      href="{{url_for('static', filename='css/style.css')}}"
+    />
+    <link
+      rel="stylesheet"
+      href="{{url_for('static', filename='css/bootstrap.min.css')}}"
+    />
+  </head>
+  <body>
+    <div class="container">
+        <div class="row">
+            <div class="col">
+                <h4 class="text-white text-center my-4">HEART RATE PREDICTION PROGRAM</h4>
+            </div>
+        </div>
+        <form action="{{url_for('predict')}}" method="POST">
+            <div class="row d-flex justify-content-center">
+                <div class="col-6">
+                    <div class="form-floating mb-3 mt-3">
+                        <input type="text" class="form-control" id="email" placeholder="Enter email" name="age">
+                        <label for="age">Age</label>
+                    </div>
+                </div>
+
+                <div class="col-6">
+                    <div class="form-floating mb-3 mt-3">
+                        <select class="form-select" id="sex" name="sex">
+                            <option value="1">Male</option>
+                            <option value="0">Female</option>
+                        </select>
+                        <label for="sel1" class="form-label">Sex</label>
+                    </div> 
+                </div>
+
+                <div class="col-6">
+                    <div class="form-floating mb-3 mt-3">
+                        <select class="form-select" id="chestpaintype" name="chestpaintype">
+                            <option value="1">ATA</option>
+                            <option value="3">TA</option>
+                            <option value="2">NAP</option>
+                            <option value="0">ASY</option>
+                        </select>
+                        <label for="sel1" class="form-label">Chest Pain Type</label>
+                    </div> 
+                </div>
+
+                <div class="col-6">
+                    <div class="form-floating mb-3 mt-3">
+                        <input type="text" class="form-control" id="restingbp" placeholder="Resting BP" name="restingbp">
+                        <label for="age">Resting BP</label>
+                    </div>
+                </div>
+
+                <div class="col-6">
+                    <div class="form-floating mb-3 mt-3">
+                        <input type="text" class="form-control" id="cholesterol" placeholder="Cholesterol" name="cholesterol">
+                        <label for="age">Cholesterol</label>
+                    </div>
+                </div>
+
+                <div class="col-6">
+                    <div class="form-floating mb-3 mt-3">
+                        <input type="text" class="form-control" id="fastingbs" placeholder="fastingbs" name="fastingbs">
+                        <label for="age">Fasting BS</label>
+                    </div>
+                </div>
+
+                <div class="col-6">
+                    <div class="form-floating mb-3 mt-3">
+                        <select class="form-select" id="restingecg" name="restingecg">
+                            <option value="1">Normal</option>
+                            <option value="2">ST</option>
+                            <option value="0">LVH</option>
+                        </select>
+                        <label for="restingecg" class="form-label">Resting ECG</label>
+                    </div> 
+                </div>
+
+                <div class="col-6">
+                    <div class="form-floating mb-3 mt-3">
+                        <input type="text" class="form-control" id="maxhr" placeholder="maxhr" name="maxhr">
+                        <label for="maxhr">Max HR</label>
+                    </div>
+                </div>
+
+                <div class="col-6">
+                    <div class="form-floating mb-3 mt-3">
+                        <select class="form-select" id="exerciseangina" name="exerciseangina">
+                            <option value="0">N</option>
+                            <option value="1">Y</option>
+                        </select>
+                        <label for="exerciseangina" class="form-label">Exercise Angina</label>
+                    </div> 
+                </div>
+
+                <div class="col-6">
+                    <div class="form-floating mb-3 mt-3">
+                        <input type="text" class="form-control" id="oldpeak" placeholder="oldpeak" name="oldpeak">
+                        <label for="oldpeak">Old Peak</label>
+                    </div>
+                </div>
+
+                <div class="col-6">
+                    <div class="form-floating mb-3 mt-3">
+                        <select class="form-select" id="stslope" name="stslope">
+                            <option value="2">Up</option>
+                                <option value="1">Flat</option>
+                                <option value="0">Down</option>
+                        </select>
+                        <label for="stslope" class="form-label">ST Slope</label>
+                    </div> 
+                </div>
+
+                <div class="col-12">
+                    <center><button type="submit" class="mx-auto" style="border-radius:20px;padding:8px 40px;background-color:#333;border:none;color:#fff;background-color:green">Predict</button></center>
+                </div>
+            </div>
+        </form> 
+        <h4>{{response}}</h4>
+    </div>
+  </body>
+  <script src="{{url_for('static', filename='js/bootstrap.bundle.js')}}"></script>
+  <script src="{{url_for('static', filename='js/bootstrap.min.js')}}"></script>
+</html>
