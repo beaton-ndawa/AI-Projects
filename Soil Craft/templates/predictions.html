@@ -1,0 +1,405 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <title>Soil Craft &mdash; Analysis</title>
+        <meta name="description" content="">
+        <meta charset="utf-8">
+        <meta name="author" content="Beaton Ndawa">
+        <!--[if IE]><meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1'><![endif]-->
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+        <!-- Favicons -->
+        <link rel="shortcut icon" href="{{ url_for('static', filename='img/logo-white.png') }}">
+
+        <!-- CSS -->
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap.min.css') }}">
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/style-responsive.css') }}">
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/animate.min.css') }}">
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/vertical-rhythm.min.css') }}">
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/owl.carousel.css') }}">
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/magnific-popup.css') }}">
+    </head>
+
+    <body class="appear-animate">
+
+        <!-- Page Loader -->
+        <div class="page-loader">
+            <div class="loader">Loading...</div>
+        </div>
+        <!-- End Page Loader -->
+
+        <!-- Skip to Content -->
+        <a href="#main" class="btn skip-to-content">Skip to Content</a>
+        <!-- End Skip to Content -->
+
+        <!-- Page Wrap -->
+        <div class="page" id="top">
+
+            <!-- Navigation panel -->
+            <nav class="main-nav js-stick">
+                <div class="full-wrapper relative clearfix">
+                    <div class="nav-logo-wrap local-scroll">
+                        <a href="{{ url_for('index') }}" class="logo">
+                            <img src="{{ url_for('static', filename='img/logo.png') }}" alt="logo" />
+                        </a>
+                    </div>
+                    <div class="mobile-nav" role="button" tabindex="0">
+                        <i class="fa fa-bars"></i>
+                        <span class="sr-only">Menu</span>
+                    </div>
+                    <!-- Main Menu -->
+                    <div class="inner-nav desktop-nav">
+                        <ul class="clearlist scroll-nav local-scroll">
+                            <li class="active"><a href="{{ url_for('index') }}#home">Home</a></li>
+                            <li><a href="{{ url_for('index') }}#about">About</a></li>
+                            <li><a href="{{ url_for('history') }}">History</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+
+            <!-- End Navigation panel -->
+
+            <main id="main">
+
+                <!-- Home Section -->
+                <section class="page-section" id="home">
+
+                    <form id="upload">
+                        <div class="btn-container">
+                            <!-- Camera -->
+                            <div class="camera-container">
+                                <input type="file" class="custom-file-input" id="camera" capture="camera" name="camera">
+                                <label class="custom-file-label-2" title="Camera" for="camera"><i
+                                        class="fas fa-camera-retro"></i>
+                                </label>
+                            </div>
+
+                            <!-- Gallery -->
+                            <div class="gallery-container">
+                                <input type="file" class="custom-file-input" id="gallery" accept="image/*"
+                                    name="gallery">
+                                <label class="custom-file-label" for="gallery" title="Gallery"><i
+                                        class="fas fa-images"></i>
+                                </label>
+                            </div>
+                        </div>
+
+                        <div id="selected-image"></div>
+                        <div class="predicted-image-container">
+                            <img src="{{ url_for('static', filename='img/giphy.gif') }}" id="predictedImage" alt="">
+                            <img src="{{ url_for('static', filename='img/loader.gif') }}" id="loading">
+                        </div>
+                        <div class="container-fluid crop-details">
+                            <div class="row">
+                                <div class="col-sm-112">
+                                    <div id="result"></div>
+                                </div>
+                                <div class="col-sm-12">
+                                    <!-- Graph Canvas -->
+                                    <canvas id="myBarChart" height="120"></canvas>
+
+                                    <!-- Audio -->
+                                    <center>
+                                        <audio id="audioPlayer" controls></audio>
+                                    </center>
+                                    <h5 class="lead">Crop Characteristics</h5>
+                                    <p id="characteristics"></p>
+                                    <h5 class="lead">Suitable Crops</h5>
+                                    <p id="crops"></p>
+                                    <h5 class="lead">Amendments</h5>
+                                    <div id="Amendments"></div>
+                                    <h5 class="lead">Fertilizer</h5>
+                                    <center>
+                                        <img src="" id="fertilizer">
+                                    </center>
+                                    <h5 class="lead">Irrigation</h5>
+                                    <center>
+                                        <img src="" id="irrigation">
+                                    </center>
+                                </div>
+                            </div>
+                        </div>
+                        <br>
+                        <button type="submit" class="predict-button">Predict</button>
+                    </form>
+
+                </section>
+                <!-- End Home Section -->
+            </main>
+
+        </div>
+        <!-- End Page Wrap -->
+
+        <!-- JS -->
+        <script>
+            const customFileLabel = document.querySelector("#selected-image");
+            const gallery = document.getElementById("gallery");
+            const camera = document.getElementById("camera");
+
+            // Update the label text when a file is selected
+            gallery.addEventListener("change", () => {
+                customFileLabel.style.display = "block";
+                if (gallery.files.length > 0) {
+                    customFileLabel.textContent = gallery.files[0].name;
+                } else {
+                    customFileLabel.textContent = "Select Image";
+                }
+            });
+
+            // Update the label text when a file is selected
+            camera.addEventListener("change", () => {
+                customFileLabel.style.display = "block";
+                if (camera.files.length > 0) {
+                    customFileLabel.textContent = camera.files[0].name;
+                } else {
+                    customFileLabel.textContent = "Select Image";
+                }
+            });
+        </script>
+        <script type="text/javascript" src="{{ url_for('static', filename='js/all.min.js') }}"></script>
+        <script type="text/javascript" src="{{ url_for('static', filename='js/jquery.min.js') }}"></script>
+        <script type="text/javascript" src="{{ url_for('static', filename='js/chart.min.js') }}"></script>
+        <script type="text/javascript" src="{{ url_for('static', filename='js/jquery.easing.1.3.js') }}"></script>
+        <script type="text/javascript" src="{{ url_for('static', filename='js/bootstrap.bundle.min.js') }}"></script>
+        <script type="text/javascript" src="{{ url_for('static', filename='js/SmoothScroll.js') }}"></script>
+        <script type="text/javascript" src="{{ url_for('static', filename='js/jquery.scrollTo.min.js') }}"></script>
+        <script type="text/javascript" src="{{ url_for('static', filename='js/jquery.localScroll.min.js') }}"></script>
+        <script type="text/javascript" src="{{ url_for('static', filename='js/jquery.viewport.mini.js') }}"></script>
+        <script type="text/javascript" src="{{ url_for('static', filename='js/jquery.sticky.js') }}"></script>
+        <script type="text/javascript" src="{{ url_for('static', filename='js/jquery.parallax-1.1.3.js') }}"></script>
+        <script type="text/javascript" src="{{ url_for('static', filename='js/jquery.fitvids.js') }}"></script>
+        <script type="text/javascript" src="{{ url_for('static', filename='js/owl.carousel.min.js') }}"></script>
+        <script type="text/javascript" src="{{ url_for('static', filename='js/isotope.pkgd.min.js') }}"></script>
+        <script type="text/javascript" src="{{ url_for('static', filename='js/imagesloaded.pkgd.min.js') }}"></script>
+        <script type="text/javascript"
+            src="{{ url_for('static', filename='js/jquery.magnific-popup.min.js') }}"></script>
+        <script type="text/javascript" src="{{ url_for('static', filename='js/wow.min.js') }}"></script>
+        <script type="text/javascript" src="{{ url_for('static', filename='js/masonry.pkgd.min.js') }}"></script>
+        <script type="text/javascript" src="{{ url_for('static', filename='js/morphext.js') }}"></script>
+        <script type="text/javascript" src="{{ url_for('static', filename='js/jquery.lazyload.min.js') }}"></script>
+        <script type="text/javascript" src="{{ url_for('static', filename='js/all.js') }}"></script>
+        <script type="text/javascript" src="{{ url_for('static', filename='js/contact-form.js') }}"></script>
+        <script type="text/javascript" src="{{ url_for('static', filename='js/jquery.ajaxchimp.min.js') }}"></script>
+
+        <script>
+            $(document).ready(function () {
+                // Function to handle image classification
+                document.querySelector("#audioPlayer").style.display = "none"; //hide audio
+                document.querySelector(".crop-details").style.display = "none"; //hide crop details
+
+                $('#upload').submit(function (event) {
+                    event.preventDefault();
+
+                    // Create an audio context
+                    const audioContext = new (window.AudioContext || window.webkitAudioContext)();
+
+                    // Get the audio element
+                    const audioElement = document.getElementById('audioPlayer');
+
+                    // Connect the audio element to the audio context
+                    const source = audioContext.createMediaElementSource(audioElement);
+
+                    // Connect the source to the audio context's destination (speakers)
+                    source.connect(audioContext.destination);
+
+                    // Start streaming when the page loads
+                    audioElement.pause();
+
+                    // Get the selected image file
+                    var file = $("#gallery")[0].files[0];
+                    var camera = $("#camera")[0].files[0];
+
+
+                    if (!$("#gallery")[0].files[0] && !$("#camera")[0].files[0]) {
+                        console.log("No File Selected");
+                        $("#result").text("No File Selected");
+
+                    } else if (!$("#camera")[0].files[0]) {
+                        console.log("Image From Gallery");
+                        var formData = new FormData();
+                        formData.append("file", file);
+
+
+                        $("#loading").show();
+
+                        // Send a POST request to the Flask endpoint
+                        $.ajax({
+                            url: "predict",
+                            type: "POST",
+                            data: formData,
+                            processData: false,
+                            contentType: false,
+
+                            success: function (response) {
+                                // Display the predicted result
+                                document.querySelector(".crop-details").style.display = "block"; //display
+                                $("#result").text(response.result + " - " + (response.probability * 100).toFixed(2) + "%");
+                                $("#characteristics").text(response.characteristics)
+                                $("#crops").text(response.crops)
+
+                                // Display amendments as an unordered list
+                                var amendmentsList = "<ul>";
+                                response.amendments.forEach(function (amendment) {
+                                    amendmentsList += "<li>" + amendment + "</li>";
+                                });
+                                amendmentsList += "</ul>";
+                                $("#Amendments").html(amendmentsList);
+
+                                document.getElementById("predictedImage").src = "static/uploads/" + response.path;
+                                $("#loading").hide();
+
+                                document.getElementById("fertilizer").src = "static/img/fertilizer/" + response.fertilizer;
+                                document.getElementById("irrigation").src = "static/img/irrigation/" + response.irrigation;
+
+
+                                /******************************* Bar Chart ******************************/
+                                // Sample data for nutrient levels
+                                var dataBar = {
+                                    labels: ['Nitrogen', 'Phosphorus', 'Potassium'],
+                                    datasets: [{
+                                        label: 'Nutrient Levels (mg/kg)',
+                                        backgroundColor: ['rgb(255, 99, 132)', 'rgb(75, 192, 192)', 'rgb(255, 205, 86)'],
+                                        data: [response.n, response.p, response.k],
+                                    }]
+                                };
+
+                                // Get the context of the canvas element
+                                var ctxBar = document.getElementById('myBarChart').getContext('2d');
+
+                                // Create a bar chart
+                                var myBarChart = new Chart(ctxBar, {
+                                    type: 'bar',
+                                    data: dataBar,
+                                    options: {
+                                        responsive: true,
+                                        scales: {
+                                            x: {
+                                                type: 'category',
+                                                labels: dataBar.labels,
+                                            },
+                                            y: {
+                                                beginAtZero: true,
+                                            }
+                                        }
+                                    }
+                                });
+
+                                // Start streaming when the page loads
+                                document.querySelector("#audioPlayer").style.display = "block";
+                                audioElement.src = "static/audio/" + response.voice;
+                                audioElement.play();
+
+                                var url = "https://skilltainment.org/soil-craft/get-history.php?image=" + response.path + "&probability=" + response.probability + "&soil_type=" + response.result + "&audio=" + response.voice + "&n=" + response.n + "&p=" + response.p + "&k=" + response.k;
+                                $.getJSON(url, function (data) {
+                                    console.log("Data Sent to Database Successfully");
+                                });
+                            },
+
+                            error: function (xhr, status, error) {
+                                // Display an error message
+                                var errorMessage = "An error occurred: " + error;
+                                $("#result").text(errorMessage);
+                            },
+                        });
+
+                    } else if (!$("#gallery")[0].files[0]) {
+                        var file = $("#camera")[0].files[0];
+                        console.log("Image From Camera");
+                        var formData = new FormData();
+                        formData.append("file", file);
+
+                        $("#loading").show();
+
+                        // Send a POST request to the Flask endpoint
+                        $.ajax({
+                            url: "predict",
+                            type: "POST",
+                            data: formData,
+                            processData: false,
+                            contentType: false,
+
+                            success: function (response) {
+                                // Display the predicted result
+                                document.querySelector(".crop-details").style.display = "block"; //display
+                                $("#result").text(response.result + " - " + (response.probability * 100).toFixed(2) + "%");
+                                $("#characteristics").text(response.characteristics)
+                                $("#crops").text(response.crops)
+
+                                // Display amendments as an unordered list
+                                var amendmentsList = "<ul>";
+                                response.amendments.forEach(function (amendment) {
+                                    amendmentsList += "<li>" + amendment + "</li>";
+                                });
+                                amendmentsList += "</ul>";
+                                $("#Amendments").html(amendmentsList);
+
+                                document.getElementById("predictedImage").src = "static/uploads/" + response.path;
+                                $("#loading").hide();
+
+                                document.getElementById("fertilizer").src = "static/img/fertilizer/" + response.fertilizer;
+                                document.getElementById("irrigation").src = "static/img/irrigation/" + response.irrigation;
+
+
+                                /******************************* Bar Chart ******************************/
+                                // Sample data for nutrient levels
+                                var dataBar = {
+                                    labels: ['Nitrogen', 'Phosphorus', 'Potassium'],
+                                    datasets: [{
+                                        label: 'Nutrient Levels (mg/kg)',
+                                        backgroundColor: ['rgb(255, 99, 132)', 'rgb(75, 192, 192)', 'rgb(255, 205, 86)'],
+                                        data: [response.n, response.p, response.k],
+                                    }]
+                                };
+
+                                // Get the context of the canvas element
+                                var ctxBar = document.getElementById('myBarChart').getContext('2d');
+
+                                // Create a bar chart
+                                var myBarChart = new Chart(ctxBar, {
+                                    type: 'bar',
+                                    data: dataBar,
+                                    options: {
+                                        responsive: true,
+                                        scales: {
+                                            x: {
+                                                type: 'category',
+                                                labels: dataBar.labels,
+                                            },
+                                            y: {
+                                                beginAtZero: true,
+                                            }
+                                        }
+                                    }
+                                });
+
+                                // Start streaming when the page loads
+                                document.querySelector("#audioPlayer").style.display = "block";
+                                audioElement.src = "static/audio/" + response.voice;
+                                audioElement.play();
+
+                                var url = "https://skilltainment.org/soil-craft/get-history.php?image=" + response.path + "&probability=" + response.probability + "&soil_type=" + response.result + "&audio=" + response.voice + "&n=" + response.n + "&p=" + response.p + "&k=" + response.k;
+                                $.getJSON(url, function (data) {
+                                    console.log("Data Sent to Database Successfully");
+                                });
+                            },
+
+                            error: function (xhr, status, error) {
+                                // Display an error message
+                                var errorMessage = "An error occurred: " + error;
+                                $("#result").text(errorMessage);
+                            },
+                        });
+                    } else {
+                        console.log("Please Select Only 1 Option");
+                        $("#result").text("Please Select only 1 Option");
+                    }
+                });
+            });
+        </script>
+    </body>
+
+</html>

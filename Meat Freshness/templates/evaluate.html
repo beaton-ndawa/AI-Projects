@@ -1,0 +1,343 @@
+<!doctype html>
+<html class="no-js" lang="zxx">
+
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>Meat Freshness Evaluation Technique ~ Evaluate</title>
+        <meta name="description" content>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="shortcut icon" type="image/x-icon"
+            href="{{ url_for('static', filename='assets/img/logo/logo.png') }}">
+
+        <link rel="stylesheet" href="{{ url_for('static', filename='assets/css/bootstrap.min.css') }}">
+        <link rel="stylesheet" href="{{ url_for('static', filename='assets/css/owl.carousel.min.css') }}">
+        <link rel="stylesheet" href="{{ url_for('static', filename='assets/css/slicknav.css') }}">
+        <link rel="stylesheet" href="{{ url_for('static', filename='assets/css/animate.min.css') }}">
+        <link rel="stylesheet" href="{{ url_for('static', filename='assets/css/magnific-popup.css') }}">
+        <link rel="stylesheet" href="{{ url_for('static', filename='assets/css/fontawesome-all.min.css') }}">
+        <link rel="stylesheet" href="{{ url_for('static', filename='assets/css/themify-icons.css') }}">
+        <link rel="stylesheet" href="{{ url_for('static', filename='assets/css/slick.css') }}">
+        <link rel="stylesheet" href="{{ url_for('static', filename='assets/css/nice-select.css') }}">
+        <link rel="stylesheet" href="{{ url_for('static', filename='assets/css/style.css') }}">
+        <link rel="stylesheet" href="{{ url_for('static', filename='assets/css/main.css') }}">
+        </script>
+    </head>
+
+    <body>
+        <header>
+            <div class="header-area">
+                <div class="header-bottom  header-sticky">
+                    <div class="container">
+                        <div class="d-flex align-items-center justify-content-between flex-wrap position-relative">
+
+                            <div class="left-side d-flex align-items-center">
+                                <div class="logo">
+                                    <a href="{{ url_for('index') }}"><img
+                                            src="{{ url_for('static', filename='assets/img/logo/logo.png') }}"
+                                            alt=""></a>
+                                </div>
+
+                                <div class="main-menu d-none d-lg-block">
+                                    <nav>
+                                        <ul id="navigation">
+                                            <li><a href="{{ url_for('index') }}">Home</a></li>
+                                            <li><a href="{{ url_for('about') }}">About</a></li>
+                                        </ul>
+                                    </nav>
+                                </div>
+                            </div>
+
+                            <div class="header-right-btn d-flex f-right align-items-center">
+                                <a href="#" class="header-btn2 d-none d-xl-inline-block"></a>
+                                <ul class="header-social d-none d-sm-block">
+                                    <li><a href="https://www.fb.com/sai4ull"><i class="fab fa-facebook-square"></i></a>
+                                    </li>
+                                    <li><a href="#"><i class="fab fa-twitter-square"></i></a></li>
+                                    <li><a href="#"><i class="fab fa-linkedin"></i></a></li>
+                                    <li> <a href="#"><i class="fab fa-youtube-square"></i></a></li>
+                                    <li> <a href="#"><i class="fas fa-envelope"></i></a></li>
+                                </ul>
+                            </div>
+
+                            <div class="col-12">
+                                <div class="mobile_menu d-block d-lg-none"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </header>
+        <main>
+
+            <div class="slider-area">
+                <div class="slider-height2 slider-bg2 hero-overly d-flex align-items-center">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-xxl-5 col-xl-6 col-lg-7 col-md-9">
+                                <div class="hero-caption hero-caption2">
+                                    <h2>Evaluation</h2>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <section class="about-area section-bg section-padding">
+                <div class="container">
+                    <div class="row align-items-center">
+                        <div class="offset-xl-1 offset-lg-0 offset-sm-1 col-xxl-5 col-xl-5 col-lg-6 col-md-9 col-sm-11">
+                            <center>
+                                <form id="upload" enctype="multipart/form-data">
+                                    <!-- Gallery -->
+                                    <div class="gallery-container">
+                                        <input type="file" class="custom-file-input" id="gallery" accept="image/*">
+                                        <label class="custom-file-label" for="gallery"><i
+                                                class="fas fa-images"></i>&nbsp;&nbsp;Gallery</label>
+                                    </div>
+
+                                    <!-- Camera -->
+                                    <div class="camera-container">
+                                        <input type="file" class="custom-file-input" id="camera" capture="camera">
+                                        <label class="custom-file-label-2" for="camera"><i
+                                                class="fas fa-camera-retro"></i>&nbsp;&nbsp;Camera</label>
+                                    </div>
+
+                                    <button type="submit" class="round-button">Predict</button>
+
+                                </form>
+                                <div id="result"></div>
+                                <div id="probability"></div>
+
+                            </center>
+                        </div>
+                        <div class="col-xxl-6 col-xl-6 col-lg-6 col-md-12 prediction-container">
+
+                            <div class="about-img about-img1">
+                                <img src="{{ url_for('static', filename='assets/img/gallery/blank.jpg') }}"
+                                    id="predictedImage" alt>
+                                <img src="{{ url_for('static', filename='assets/img/icon/loader.gif') }}" id="loading">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+        <footer>
+            <div class="footer-wrapper gray-bg">
+                <div class="footer-area footer-padding">
+                    <div class="container">
+                        <div class="row justify-content-between">
+                            <div class="col-xl-2 col-lg-2 col-md-3 col-sm-6">
+                                <div class="single-footer-caption mb-50">
+                                    <div class="single-footer-caption mb-20">
+
+                                        <div class="footer-logo mb-35">
+                                            <a href="{{ url_for('index') }}"><img
+                                                    src="{{ url_for('static', filename='assets/img/logo/logo.png') }}"
+                                                    alt=""></a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-xl-2 col-lg-2 col-md-4 col-sm-6">
+                                <div class="single-footer-caption mb-50">
+                                    <div class="footer-tittle">
+                                        <h4>Quick Links</h4>
+                                        <ul>
+                                            <li><a href="{{ url_for('about') }}">About</a></li>
+                                            <li><a href="#">Services</a></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-xl-2 col-lg-2 col-md-4 col-sm-6">
+                                <div class="single-footer-caption mb-50">
+                                    <div class="footer-tittle">
+                                        <h4>Programs</h4>
+                                        <ul>
+                                            <li><a href="{{ url_for('evaluate') }}">Evaluation</a></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-xl-2 col-lg-2 col-md-4 col-sm-6">
+                                <div class="single-footer-caption mb-50">
+                                    <div class="footer-tittle">
+                                        <h4>Resourses</h4>
+                                        <ul>
+                                            <li><a href="#">FAQ</a></li>
+                                            <li><a href="#">Contact Us</a></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="footer-bottom-area">
+                    <div class="container">
+                        <div class="footer-border">
+                            <div class="row">
+                                <div class="col-xl-12 ">
+                                    <div class="footer-copy-right text-center">
+                                        <p>Copyright &copy;
+                                            <script>document.write(new Date().getFullYear());</script> All rights
+                                            reserved
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </footer>
+        <div id="back-top">
+            <a title="Go to Top" href="#"><i class="fas fa-long-arrow-alt-up"></i></a>
+        </div>
+
+        <script src="{{ url_for('static', filename='assets/js/jquery-3.3.1.min.js') }}"></script>
+        <script>
+            // JavaScript to trigger file input when the label is clicked
+            const gallery = document.getElementById("gallery");
+            const customFileLabel = document.querySelector(".custom-file-label");
+
+
+            // Update the label text when a file is selected
+            gallery.addEventListener("change", () => {
+                if (gallery.files.length > 0) {
+                    customFileLabel.textContent = gallery.files[0].name;
+                } else {
+                    customFileLabel.textContent = "Select Image";
+                }
+            });
+
+            // JavaScript to trigger file input when the label is clicked
+            const camera = document.getElementById("camera");
+            const customFileLabel2 = document.querySelector(".custom-file-label-2");
+
+            // Update the label text when a file is selected
+            camera.addEventListener("change", () => {
+                if (camera.files.length > 0) {
+                    customFileLabel2.textContent = camera.files[0].name;
+                } else {
+                    customFileLabel2.textContent = "Open Camera";
+                }
+            });
+        </script>
+        <script>
+            $(document).ready(function () {
+                // Function to handle image classification
+                $('#upload').submit(function (event) {
+                    event.preventDefault();
+
+                    // Get the selected image file
+                    var file = $("#gallery")[0].files[0];
+                    var camera = $("#camera")[0].files[0];
+
+                    if (!$("#gallery")[0].files[0] && !$("#camera")[0].files[0]) {
+                        console.log("No File Selected");
+                        $("#result").text("No File Selected");
+
+                    } else if (!$("#camera")[0].files[0]) {
+                        console.log("Image From Gallery");
+                        var formData = new FormData();
+                        formData.append("file", file);
+
+                        $("#loading").show();
+
+                        // Send a POST request to the Flask endpoint
+                        $.ajax({
+                            url: "predict",
+                            type: "POST",
+                            data: formData,
+                            processData: false,
+                            contentType: false,
+
+                            success: function (response) {
+                                // Display the predicted result
+                                $("#result").text(response.result);
+                                $("#probability").text((response.probability * 100).toFixed(3) + '%');
+                                document.getElementById("predictedImage").src = response.path;
+                                $("#loading").hide();
+                            },
+
+                            error: function (xhr, status, error) {
+                                // Display an error message
+                                var errorMessage = "An error occurred: " + error;
+                                $("#result").text(errorMessage);
+                            },
+                        });
+
+                    } else if (!$("#gallery")[0].files[0]) {
+                        var file = $("#camera")[0].files[0];
+                        console.log("Image From Camera");
+                        var formData = new FormData();
+                        formData.append("file", file);
+
+                        $("#loading").show();
+
+                        // Send a POST request to the Flask endpoint
+                        $.ajax({
+                            url: "predict",
+                            type: "POST",
+                            data: formData,
+                            processData: false,
+                            contentType: false,
+
+                            success: function (response) {
+                                // Display the predicted result
+                                $("#result").text(response.result);
+                                $("#probability").text((response.probability * 100).toFixed(3) + '%');
+                                document.getElementById("predictedImage").src = response.path;
+                                $("#loading").hide();
+                            },
+
+                            error: function (xhr, status, error) {
+                                // Display an error message
+                                var errorMessage = "An error occurred: " + error;
+                                $("#result").text(errorMessage);
+                            },
+                        });
+                    } else {
+                        console.log("Please Select Only 1 Option");
+                        $("#result").text("Please Select only 1 Option");
+                    }
+                });
+            });
+        </script>
+        <script src="{{ url_for('static', filename='assets/js/vendor/modernizr-3.5.0.min.js') }}"></script>
+        <script src="{{ url_for('static', filename='assets/js/popper.min.js') }}"></script>
+        <script src="{{ url_for('static', filename='assets/js/bootstrap.min.js') }}"></script>
+
+        <script src="{{ url_for('static', filename='assets/js/owl.carousel.min.js') }}"></script>
+        <script src="{{ url_for('static', filename='assets/js/slick.min.js') }}"></script>
+        <script src="{{ url_for('static', filename='assets/js/jquery.slicknav.min.js') }}"></script>
+        <script src="{{ url_for('static', filename='assets/js/countdown.min.js') }}"></script>
+
+        <script src="{{ url_for('static', filename='assets/js/wow.min.js') }}"></script>
+        <script src="{{ url_for('static', filename='assets/js/jquery.magnific-popup.js') }}"></script>
+        <script src="{{ url_for('static', filename='assets/js/jquery.nice-select.min.js') }}"></script>
+        <script src="{{ url_for('static', filename='assets/js/jquery.counterup.min.js') }}"></script>
+        <!-- <script src="{{ url_for('static', filename='assets/js/waypoints.min.js') }}"></script> -->
+
+        <script src="{{ url_for('static', filename='assets/js/contact.js') }}"></script>
+        <script src="{{ url_for('static', filename='assets/js/jquery.validate.min.js') }}"></script>
+        <script src="{{ url_for('static', filename='assets/js/mail-script.js') }}"></script>
+        <script src="{{ url_for('static', filename='assets/js/jquery.ajaxchimp.min.js') }}"></script>
+
+        <script src="{{ url_for('static', filename='assets/js/plugins.js') }}"></script>
+        <script src="{{ url_for('static', filename='assets/js/main.js') }}"></script>
+        <script>
+            window.dataLayer = window.dataLayer || [];
+            function gtag() { dataLayer.push(arguments); }
+            gtag('js', new Date());
+
+            gtag('config', 'UA-23581568-13');
+        </script>
+    </body>
+
+</html>

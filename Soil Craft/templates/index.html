@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <title>Soil Craft &mdash; Precision Farming App</title>
+        <meta name="description" content="">
+        <meta charset="utf-8">
+        <meta name="author" content="Beaton Ndawa">
+        <!--[if IE]><meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1'><![endif]-->
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+        <!-- Favicons -->
+        <link rel="shortcut icon" href="{{ url_for('static', filename='img/logo-white.png') }}">
+
+        <!-- CSS -->
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap.min.css') }}">
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/style-responsive.css') }}">
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/animate.min.css') }}">
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/vertical-rhythm.min.css') }}">
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/owl.carousel.css') }}">
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/magnific-popup.css') }}">
+    </head>
+
+
+    <body class="appear-animate">
+
+        <!-- Page Loader -->
+        <!-- <div class="page-loader">
+            <div class="loader">Loading...</div>
+        </div> -->
+        <!-- End Page Loader -->
+
+        <!-- Skip to Content -->
+        <a href="#main" class="btn skip-to-content">Skip to Content</a>
+        <!-- End Skip to Content -->
+
+        <!-- Page Wrap -->
+        <div class="page" id="top">
+
+            <!-- Navigation panel -->
+            <nav class="main-nav js-stick">
+                <div class="full-wrapper relative clearfix">
+                    <div class="nav-logo-wrap local-scroll">
+                        <a href="#top" class="logo">
+                            <img src="{{ url_for('static', filename='img/logo.png') }}" alt="logo" />
+                        </a>
+                    </div>
+                    <div class="mobile-nav" role="button" tabindex="0">
+                        <i class="fa fa-bars"></i>
+                        <span class="sr-only">Menu</span>
+                    </div>
+                    <!-- Main Menu -->
+                    <div class="inner-nav desktop-nav">
+                        <ul class="clearlist scroll-nav local-scroll">
+                            <li class="active"><a href="#home">Home</a></li>
+                            <li><a href="#about">About</a></li>
+                            <li><a href="{{ url_for('history') }}">History</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+            <!-- End Navigation panel -->
+
+            <main id="main">
+
+                <!-- Home Section -->
+                <section class="page-section" id="home">
+                    <div class="relative container">
+                        <div class="align-center">
+                            <h2 class="hs-line-14 font-alt mb-50 mb-xs-30"> Soil Craft</h2>
+                            <div class="local-scroll">
+                                <span class="d-none d-sm-inline-block">&nbsp;</span>
+                                <a href="{{ url_for('predictions') }}"
+                                    class="btn btn-mod btn-border btn-medium btn-round">Soil Analysis</a>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- End Home Section -->
+
+
+                <!-- Portfolio Section -->
+                <section class="page-section pt-0 pb-0" id="portfolio">
+                    <div class="relative">
+                        <!-- Works Grid -->
+                        <ul class="works-grid work-grid-4 work-grid-gut clearfix font-alt hover-white hide-titles"
+                            id="work-grid">
+
+                            <!-- Work Item (Lightbox) -->
+                            <li class="work-item mix photography">
+                                <a href="{{ url_for('static', filename='img/black.png') }}"
+                                    class="work-lightbox-link mfp-image">
+                                    <div class="work-img">
+                                        <img src="{{ url_for('static', filename='img/black.png') }}" alt="Black" />
+                                    </div>
+                                    <div class="work-intro">
+                                        <h3 class="work-title">Black Soil</h3>
+                                    </div>
+                                </a>
+                            </li>
+                            <!-- End Work Item -->
+
+                            <!-- Work Item (External Page) -->
+                            <li class="work-item mix branding design">
+                                <a href="{{ url_for('static', filename='img/red.jpeg') }}"
+                                    class="work-lightbox-link mfp-image">
+                                    <div class="work-img">
+                                        <img src="{{ url_for('static', filename='img/red.jpeg') }}" alt="Red" />
+                                    </div>
+                                    <div class="work-intro">
+                                        <h3 class="work-title">Red Soil</h3>
+                                    </div>
+                                </a>
+                            </li>
+                            <!-- End Work Item -->
+
+                            <!-- Work Item (External Page) -->
+                            <li class="work-item mix branding">
+                                <a href="{{ url_for('static', filename='img/sand.jpeg') }}"
+                                    class="work-lightbox-link mfp-image">
+                                    <div class="work-img">
+                                        <img src="{{ url_for('static', filename='img/sand.jpeg') }}" alt="Sand" />
+                                    </div>
+                                    <div class="work-intro">
+                                        <h3 class="work-title">Sand Soil</h3>
+                                    </div>
+                                </a>
+                            </li>
+                            <!-- End Work Item -->
+
+                            <!-- Work Item (External Page) -->
+                            <li class="work-item mix branding">
+                                <a href="{{ url_for('static', filename='img/loam.jpg') }}"
+                                    class="work-lightbox-link mfp-image">
+                                    <div class="work-img">
+                                        <img src="{{ url_for('static', filename='img/loam.jpg') }}" alt="Loam" />
+                                    </div>
+                                    <div class="work-intro">
+                                        <h3 class="work-title">Loam Soil</h3>
+                                    </div>
+                                </a>
+                            </li>
+                            <!-- End Work Item -->
+                        </ul>
+                        <!-- End Works Grid -->
+                    </div>
+                </section>
+
+                <!-- End Portfolio Section -->
+
+
+                <!-- Call Action Section -->
+                <section class="small-section bg-dark">
+                    <div class="container relative">
+
+                        <div class="align-center">
+                            <h3 class="banner-heading font-alt">Like My Creative Works?</h3>
+                            <div class="local-scroll">
+                                <a href="{{ url_for('predictions') }}"
+                                    class="btn btn-mod btn-w btn-medium btn-round">Soil Analysis</a>
+                            </div>
+                        </div>
+
+                    </div>
+                </section>
+                <!-- End Call Action Section -->
+
+
+                <!-- About Section -->
+                <section class="page-section" id="about">
+                    <div class="container relative">
+
+                        <h2 class="section-title font-alt align-left mb-70 mb-sm-40">
+                            About
+                        </h2>
+
+                        <div class="section-text mb-30 mb-sm-20">
+                            <div class="row">
+
+                                <div class="col-md-4">
+                                    <blockquote>
+                                        <p>
+                                            Traditional soil analysis methods in precision agriculture present
+                                            significant
+                                            challenges, characterized by complexity and a lack of real-time
+                                            capabilities.
+                                        </p>
+                                    </blockquote>
+                                </div>
+
+                                <div class="col-md-4 col-sm-6 mb-sm-50 mb-xs-30">
+
+                                    Farmers currently face difficulties in obtaining timely and accurate information
+                                    about the soil on their farms, hindering their ability to make informed decisions
+                                    regarding crop selection, irrigation, and fertilization.
+                                </div>
+
+                                <div class="col-md-4 col-sm-6 mb-sm-50 mb-xs-30">
+                                    This gap in accessibility
+                                    to real-time soil insights limits the optimization of agricultural practices and,
+                                    subsequently, impacts crop yields and sustainability. The absence of a user-friendly
+                                    solution exacerbates the issue, creating an urgent need for an innovative approach
+                                    to soil analysis that is both accessible and immediate for farmers.
+                                </div>
+
+                            </div>
+                        </div>
+                        <div class="row d-flex justify-content-center">
+
+                            <!-- Team item -->
+                            <div class="col-sm-4 mb-xs-30 wow fadeInUp" data-wow-delay="0.1s">
+                                <div class="team-item">
+                                    <div class="team-item-image">
+                                        <img src="{{ url_for('static', filename='img/team/beaton.jpg') }}"
+                                            alt="Beaton Ndawa" />
+                                        <div class="team-item-detail">
+                                            <h4 class="font-alt normal">Beaton Ndawa</h4>
+                                            <p>
+                                                Electrical and Electronics Engineering
+                                            </p>
+                                            <div class="team-social-links">
+                                                <a href="#" target="_blank"><i class="fab fa-linkedin"></i><span
+                                                        class="sr-only">Linkedin Profile</span></a>
+                                                <a href="#" target="_blank"><i class="fab fa-twitter"></i><span
+                                                        class="sr-only">Twitter profile</span></a>
+                                                <a href="#" target="_blank"><i class="fab fa-pinterest"></i><span
+                                                        class="sr-only">Pinterest profile</span></a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- End Team item -->
+
+                        </div>
+
+                    </div>
+                </section>
+                <!-- End About Section -->
+
+                <!-- Divider -->
+                <hr class="mt-0 mb-0 " />
+                <!-- End Divider -->
+
+            </main>
+
+            <!-- Footer -->
+            <footer class="page-section bg-gray-lighter footer pb-60">
+                <div class="container">
+
+                    <!-- Footer Logo -->
+                    <div class="local-scroll mb-30 wow fadeInUp" data-wow-duration="1.2s">
+                        <a href="#top"><img src="{{ url_for('static', filename='img/logo.png') }}" width="78"
+                                height="36" alt="Company logo" /><span class="sr-only">Scroll to the top of the
+                                page</span></a>
+                    </div>
+
+                    <!-- End Footer Logo -->
+
+                    <!-- Social Links -->
+                    <div class="footer-social-links mb-110 mb-xs-60">
+                        <a href="#" title="Facebook" target="_blank"><i class="fab fa-facebook"></i> <span
+                                class="sr-only">Facebook profile</span></a>
+                        <a href="#" title="Twitter" target="_blank"><i class="fab fa-twitter"></i> <span
+                                class="sr-only">Twitter profile</span></a>
+                        <a href="#" title="Behance" target="_blank"><i class="fab fa-behance"></i> <span
+                                class="sr-only">Behance profile</span></a>
+                        <a href="#" title="LinkedIn+" target="_blank"><i class="fab fa-linkedin"></i> <span
+                                class="sr-only">LinkedIn+ profile</span></a>
+                        <a href="#" title="Pinterest" target="_blank"><i class="fab fa-pinterest"></i> <span
+                                class="sr-only">Pinterest profile</span></a>
+                    </div>
+                    <!-- End Social Links -->
+
+                    <!-- Footer Text -->
+                    <div class="footer-text">
+
+                        <!-- Copyright -->
+                        <div class="footer-copy font-alt">
+                            <a href="#" target="_blank">© Soil Craft 2023</a>.
+                        </div>
+                        <!-- End Copyright -->
+
+                    </div>
+                    <!-- End Footer Text -->
+
+                </div>
+
+
+                <!-- Top Link -->
+                <div class="local-scroll">
+                    <a href="#top" class="link-to-top"><i class="fa fa-caret-up"></i><span class="sr-only">Scroll to
+                            top</span></a>
+                </div>
+                <!-- End Top Link -->
+
+            </footer>
+            <!-- End Footer -->
+
+        </div>
+        <!-- End Page Wrap -->
+
+
+        <!-- JS -->
+        <script type="text/javascript" src="{{ url_for('static', filename='js/all.min.js') }}"></script>
+        <script type="text/javascript" src="{{ url_for('static', filename='js/jquery.min.js') }}"></script>
+        <script type="text/javascript" src="{{ url_for('static', filename='js/jquery.easing.1.3.js') }}"></script>
+        <script type="text/javascript" src="{{ url_for('static', filename='js/bootstrap.bundle.min.js') }}"></script>
+        <script type="text/javascript" src="{{ url_for('static', filename='js/SmoothScroll.js') }}"></script>
+        <script type="text/javascript" src="{{ url_for('static', filename='js/jquery.scrollTo.min.js') }}"></script>
+        <script type="text/javascript" src="{{ url_for('static', filename='js/jquery.localScroll.min.js') }}"></script>
+        <script type="text/javascript" src="{{ url_for('static', filename='js/jquery.viewport.mini.js') }}"></script>
+        <script type="text/javascript" src="{{ url_for('static', filename='js/jquery.sticky.js') }}"></script>
+        <script type="text/javascript" src="{{ url_for('static', filename='js/jquery.parallax-1.1.3.js') }}"></script>
+        <script type="text/javascript" src="{{ url_for('static', filename='js/jquery.fitvids.js') }}"></script>
+        <script type="text/javascript" src="{{ url_for('static', filename='js/owl.carousel.min.js') }}"></script>
+        <script type="text/javascript" src="{{ url_for('static', filename='js/isotope.pkgd.min.js') }}"></script>
+        <script type="text/javascript" src="{{ url_for('static', filename='js/imagesloaded.pkgd.min.js') }}"></script>
+        <script type="text/javascript"
+            src="{{ url_for('static', filename='js/jquery.magnific-popup.min.js') }}"></script>
+        <script type="text/javascript" src="{{ url_for('static', filename='js/wow.min.js') }}"></script>
+        <script type="text/javascript" src="{{ url_for('static', filename='js/masonry.pkgd.min.js') }}"></script>
+        <script type="text/javascript" src="{{ url_for('static', filename='js/morphext.js') }}"></script>
+        <script type="text/javascript" src="{{ url_for('static', filename='js/jquery.lazyload.min.js') }}"></script>
+        <script type="text/javascript" src="{{ url_for('static', filename='js/all.js') }}"></script>
+        <script type="text/javascript" src="{{ url_for('static', filename='js/contact-form.js') }}"></script>
+        <script type="text/javascript" src="{{ url_for('static', filename='js/jquery.ajaxchimp.min.js') }}"></script>
+    </body>
+
+</html>

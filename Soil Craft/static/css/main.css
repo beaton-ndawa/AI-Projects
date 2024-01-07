@@ -1,0 +1,253 @@
+.logo a img {
+    width: 75px;
+}
+
+.btn-container {
+    display: flex;
+    justify-content: space-around;
+    position: fixed;
+    z-index: 999;
+    bottom: 2%;
+    left: 50%;
+    transform: translate(-50%, 0);
+}
+
+/* Style for the custom file input button */
+.custom-file-input {
+    display: none !important;
+    /* Hide the default file input */
+}
+
+.custom-file-label {
+    background-color: #1f1d1d;
+    color: #fff;
+    padding: 15px 30px;
+    border: none;
+    border-radius: 15px;
+    cursor: pointer;
+    margin-left: 10px;
+
+}
+
+.custom-file-label:hover {
+    background-color: rgb(28, 158, 239);
+    color: #fff;
+    transition: all 0.2s ease-in-out;
+    box-shadow: 0 0 4px 1px rgba(0, 0, 0, 0.5);
+}
+
+.custom-file-label-2 {
+    background-color: #1f1d1d;
+    color: #fff;
+    padding: 15px 30px;
+    border: none;
+    border-radius: 15px;
+    cursor: pointer;
+    margin-right: 10px;
+}
+
+.custom-file-label-2:hover {
+    background-color: rgb(28, 158, 239);
+    color: #fff;
+    transition: all 0.2s ease-in-out;
+    box-shadow: 0 0 4px 1px rgba(0, 0, 0, 0.5);
+}
+
+.camera-container {
+    overflow-x: auto;
+}
+
+.camera-container label .fa-camera-retro {
+    font-size: 20px;
+}
+
+.gallery-container label .fa-images {
+    font-size: 20px;
+}
+
+.gallery-container {
+    overflow-x: auto;
+}
+
+.prediction-container {
+    position: relative;
+}
+
+#result {
+    text-align: center;
+    /* margin-top: 20px; */
+    font-weight: bold;
+    font-size: 20px;
+    color: #000;
+    text-transform: capitalize;
+}
+
+/* Apply styles to the entire table */
+.predictions-table {
+    width: 100%;
+    max-width: 600px;
+    /* Adjust as needed */
+    margin: 5px auto;
+    border-collapse: collapse;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Style the table header */
+#predictions-table th {
+    background-color: #eeeaea;
+    text-align: left;
+    padding: 12px;
+}
+
+/* Style alternating table rows */
+#predictions-table tr:nth-child(odd) {
+    background-color: #e2cccc;
+}
+
+/* Style table data cells */
+#predictions-table td {
+    padding: 10px;
+    border-bottom: 1px solid #ddd4d4;
+}
+
+/* Remove border for the last row */
+#predictions-table tr:last-child td {
+    border-bottom: none;
+}
+
+
+#loading {
+    width: 140px;
+    position: absolute;
+    transform: translate(-50%, -50%);
+    top: 50%;
+    left: 50%;
+    display: none;
+}
+
+.predict-button {
+    padding: 15px 40px;
+    font-size: 18px;
+    background-color: #1f1d1d;
+    color: #fff;
+    box-shadow: 0 0 8px 2px rgba(0, 0, 0, 0.1);
+    font-weight: bold;
+    border: none;
+    border-radius: 30px;
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+    transition: all 0.3s ease-in-out;
+    z-index: 1;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 10px;
+}
+
+.predict-button::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 0;
+    height: 100%;
+    background-color: rgb(28, 158, 239);
+    transition: all 0.3s ease-in-out;
+    z-index: -1;
+}
+
+.predict-button:hover {
+    color: #c3c6c9;
+}
+
+.predict-button:hover::before {
+    width: 100%;
+}
+
+#selected-image {
+    background-color: #6e6c6c;
+    color: #fff;
+    padding: 5px;
+    border-radius: 10px;
+    margin: 5px auto;
+    width: 450px;
+    display: none;
+    text-align: center;
+}
+
+.predicted-image-container {
+    border-radius: 5px;
+    display: flex;
+    justify-content: center;
+}
+
+.predicted-image-container #predictedImage {
+    border-radius: 15px;
+    box-shadow: 0 0 8px 1px rgba(0, 0, 0, 0.1);
+    object-fit: cover;
+    object-position: center center;
+    width: 450px;
+    height: 300px;
+    margin-bottom: 5px;
+}
+
+.history img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    object-position: center center;
+    border-radius: 10px;
+    display: block;
+    margin-bottom: 5px;
+}
+
+.history audio {
+    width: 100%;
+}
+
+.history h4 {
+    font-weight: bold;
+    margin: 4px auto;
+}
+
+.crop-details h5{
+    font-weight:bold;
+    margin:10px auto;
+    background-color:#333;
+    border-radius:10px;
+    color:#fff;
+    padding:5px;
+}
+
+.crop-details img{
+    width:80%;
+    margin-left:auto;
+    margin-right:auto;
+    display:auto;
+}
+
+@media(max-width:500px){
+    .crop-details img{
+        width:95%;
+    }
+}
+
+@media(max-width:450px) {
+    .predicted-image-container #predictedImage {
+        border-radius: 15px;
+        box-shadow: 0 0 8px 1px rgba(0, 0, 0, 0.1);
+        object-fit: cover;
+        object-position: center center;
+        width: 90%;
+        height: 250px;
+        margin-bottom: 5px;
+    }
+
+    #selected-image {
+        width: 90%;
+    }
+}

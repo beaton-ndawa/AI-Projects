@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <title>Soil Craft &mdash; History</title>
+        <meta name="description" content="">
+        <meta charset="utf-8">
+        <meta name="author" content="Beaton Ndawa">
+        <!--[if IE]><meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1'><![endif]-->
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+        <!-- Favicons -->
+        <link rel="shortcut icon" href="{{ url_for('static', filename='img/logo-white.png') }}">
+
+        <!-- CSS -->
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap.min.css') }}">
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/style-responsive.css') }}">
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/animate.min.css') }}">
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/vertical-rhythm.min.css') }}">
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/owl.carousel.css') }}">
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/magnific-popup.css') }}">
+
+        <script type="text/javascript" src="{{ url_for('static', filename='js/jquery.min.js') }}"></script>
+    </head>
+
+    <body class="appear-animate">
+
+        <!-- Page Loader -->
+        <div class="page-loader">
+            <div class="loader">Loading...</div>
+        </div>
+        <!-- End Page Loader -->
+
+        <!-- Skip to Content -->
+        <a href="#main" class="btn skip-to-content">Skip to Content</a>
+        <!-- End Skip to Content -->
+
+        <!-- Page Wrap -->
+        <div class="page" id="top">
+
+            <!-- Navigation panel -->
+            <nav class="main-nav js-stick">
+                <div class="full-wrapper relative clearfix">
+                    <div class="nav-logo-wrap local-scroll">
+                        <a href="{{ url_for('index') }}" class="logo">
+                            <img src="{{ url_for('static', filename='img/logo.png') }}" alt="logo" />
+                        </a>
+                    </div>
+                    <div class="mobile-nav" role="button" tabindex="0">
+                        <i class="fa fa-bars"></i>
+                        <span class="sr-only">Menu</span>
+                    </div>
+                    <!-- Main Menu -->
+                    <div class="inner-nav desktop-nav">
+                        <ul class="clearlist scroll-nav local-scroll">
+                            <li><a href="{{ url_for('index') }}#home">Home</a></li>
+                            <li><a href="{{ url_for('index') }}#about">About</a></li>
+                            <li class="active"><a href="{{ url_for('history') }}">History</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+
+            <!-- End Navigation panel -->
+
+            <main id="main">
+                <div class="container-fluid history">
+                    <div id="data-container" class="row wow fadeInUp" data-wow-delay="0.1s"></div>
+                </div>
+                <script>
+                    $(function () {
+                        const apiUrl = 'https://skilltainment.org/soil-craft/read_history.php';
+
+                        $.ajax({
+                            url: apiUrl,
+                            method: 'GET',
+                            dataType: 'json',
+                            success: function (data) {
+                                const container = $('#data-container');
+
+                                // Check if the response has a 'history' property
+                                if (data.hasOwnProperty('history') && Array.isArray(data.history)) {
+                                    // Iterate over the 'history' array
+                                    $.each(data.history, function (index, record) {
+                                        // Create a container for each record
+                                        const col = $('<div>').addClass('col-sm-12 col-md-4');
+
+                                        // Display other information
+                                        const stamp = $('<h4>').html(`${record.stamp}`);
+                                        col.append(stamp);
+
+                                        // Display image
+                                        const image = $('<img>').attr('src', 'static/uploads/' + record.image).addClass('record-image');
+                                        col.append(image);
+
+                                        // Display audio with controls
+                                        const audio = $('<audio controls>').attr('src', 'static/audio/' + record.audio).addClass('record-audio');
+                                        col.append(audio);
+
+                                        // Display other information in a list
+                                        const info = $('<ul>').append(
+                                            $('<li>').html(`Soil Type: ${record.soil_type}`),
+                                            $('<li>').html(`Probability: ${(record.probability * 100).toFixed(2)}%`),
+                                            $('<li>').html(`Nitrogen: ${record.n} mg/kg`),
+                                            $('<li>').html(`Phosphorus: ${record.p} mg/kg`),
+                                            $('<li>').html(`Pottasium: ${record.k} mg/kg`),
+
+                                        );
+                                        col.append(info);
+
+                                        // Add a horizontal line to separate records
+                                        // containerFluid.append('<hr>');
+
+                                        // Append the containerFluid to the main container
+                                        container.append(col);
+                                    });
+                                } else {
+                                    console.error('Invalid API response format');
+                                }
+                            },
+                            error: function (error) {
+                                console.error('Error fetching data:', error);
+                            }
+                        });
+                    });
+
+                </script>
+            </main>
+
+            <!-- Footer -->
+            <footer class="page-section bg-gray-lighter footer pb-60">
+                <div class="container">
+
+                    <!-- Footer Logo -->
+                    <div class="local-scroll mb-30 wow fadeInUp" data-wow-duration="1.2s">
+                        <a href="#top"><img src="{{ url_for('static', filename='img/logo.png') }}" width="78"
+                                height="36" alt="Company logo" /><span class="sr-only">Scroll to the top of the
+                                page</span></a>
+                    </div>
+
+                    <!-- End Footer Logo -->
+
+                    <!-- Social Links -->
+                    <div class="footer-social-links mb-110 mb-xs-60">
+                        <a href="#" title="Facebook" target="_blank"><i class="fab fa-facebook"></i> <span
+                                class="sr-only">Facebook profile</span></a>
+                        <a href="#" title="Twitter" target="_blank"><i class="fab fa-twitter"></i> <span
+                                class="sr-only">Twitter profile</span></a>
+                        <a href="#" title="Behance" target="_blank"><i class="fab fa-behance"></i> <span
+                                class="sr-only">Behance profile</span></a>
+                        <a href="#" title="LinkedIn+" target="_blank"><i class="fab fa-linkedin"></i> <span
+                                class="sr-only">LinkedIn+ profile</span></a>
+                        <a href="#" title="Pinterest" target="_blank"><i class="fab fa-pinterest"></i> <span
+                                class="sr-only">Pinterest profile</span></a>
+                    </div>
+                    <!-- End Social Links -->
+
+                    <!-- Footer Text -->
+                    <div class="footer-text">
+
+                        <!-- Copyright -->
+                        <div class="footer-copy font-alt">
+                            <a href="#" target="_blank">© Soil Craft 2023</a>.
+                        </div>
+                        <!-- End Copyright -->
+
+                    </div>
+                    <!-- End Footer Text -->
+                </div>
+
+
+                <!-- Top Link -->
+                <div class="local-scroll">
+                    <a href="#top" class="link-to-top"><i class="fa fa-caret-up"></i><span class="sr-only">Scroll to
+                            top</span></a>
+                </div>
+                <!-- End Top Link -->
+
+            </footer>
+            <!-- End Footer -->
+        </div>
+        <!-- End Page Wrap -->
+
+        <!-- JS -->
+        <script type="text/javascript" src="{{ url_for('static', filename='js/all.min.js') }}"></script>
+        <script type="text/javascript" src="{{ url_for('static', filename='js/jquery.easing.1.3.js') }}"></script>
+        <script type="text/javascript" src="{{ url_for('static', filename='js/bootstrap.bundle.min.js') }}"></script>
+        <script type="text/javascript" src="{{ url_for('static', filename='js/SmoothScroll.js') }}"></script>
+        <script type="text/javascript" src="{{ url_for('static', filename='js/jquery.scrollTo.min.js') }}"></script>
+        <script type="text/javascript" src="{{ url_for('static', filename='js/jquery.localScroll.min.js') }}"></script>
+        <script type="text/javascript" src="{{ url_for('static', filename='js/jquery.viewport.mini.js') }}"></script>
+        <script type="text/javascript" src="{{ url_for('static', filename='js/jquery.sticky.js') }}"></script>
+        <script type="text/javascript" src="{{ url_for('static', filename='js/jquery.parallax-1.1.3.js') }}"></script>
+        <script type="text/javascript" src="{{ url_for('static', filename='js/jquery.fitvids.js') }}"></script>
+        <script type="text/javascript" src="{{ url_for('static', filename='js/owl.carousel.min.js') }}"></script>
+        <script type="text/javascript" src="{{ url_for('static', filename='js/isotope.pkgd.min.js') }}"></script>
+        <script type="text/javascript" src="{{ url_for('static', filename='js/imagesloaded.pkgd.min.js') }}"></script>
+        <script type="text/javascript"
+            src="{{ url_for('static', filename='js/jquery.magnific-popup.min.js') }}"></script>
+        <script type="text/javascript" src="{{ url_for('static', filename='js/wow.min.js') }}"></script>
+        <script type="text/javascript" src="{{ url_for('static', filename='js/masonry.pkgd.min.js') }}"></script>
+        <script type="text/javascript" src="{{ url_for('static', filename='js/morphext.js') }}"></script>
+        <script type="text/javascript" src="{{ url_for('static', filename='js/jquery.lazyload.min.js') }}"></script>
+        <script type="text/javascript" src="{{ url_for('static', filename='js/all.js') }}"></script>
+        <script type="text/javascript" src="{{ url_for('static', filename='js/contact-form.js') }}"></script>
+        <script type="text/javascript" src="{{ url_for('static', filename='js/jquery.ajaxchimp.min.js') }}"></script>
+
+    </body>
+
+</html>

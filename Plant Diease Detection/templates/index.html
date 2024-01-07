@@ -1,0 +1,164 @@
+<!doctype html>
+<html class="no-js" lang="zxx">
+
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>Plant Disease Detection</title>
+        <meta name="description" content>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="shortcut icon" type="image/x-icon"
+            href="{{ url_for('static', filename='assets/img/logo/logo.png') }}">
+
+        <link rel="stylesheet" href="{{ url_for('static', filename='assets/css/bootstrap.min.css') }}">
+        <link rel="stylesheet" href="{{ url_for('static', filename='assets/css/owl.carousel.min.css') }}">
+        <link rel="stylesheet" href="{{ url_for('static', filename='assets/css/slicknav.css') }}">
+        <link rel="stylesheet" href="{{ url_for('static', filename='assets/css/animate.min.css') }}">
+        <link rel="stylesheet" href="{{ url_for('static', filename='assets/css/magnific-popup.css') }}">
+        <link rel="stylesheet" href="{{ url_for('static', filename='assets/css/fontawesome-all.min.css') }}">
+        <link rel="stylesheet" href="{{ url_for('static', filename='assets/css/themify-icons.css') }}">
+        <link rel="stylesheet" href="{{ url_for('static', filename='assets/css/slick.css') }}">
+        <link rel="stylesheet" href="{{ url_for('static', filename='assets/css/nice-select.css') }}">
+        <link rel="stylesheet" href="{{ url_for('static', filename='assets/css/style.css') }}">
+        <link rel="stylesheet" href="{{ url_for('static', filename='assets/css/main.css') }}">
+        </script>
+    </head>
+
+    <body>
+
+        <main>
+            <section class="about-area section-bg d-flex align-items-center">
+                <div class="container">
+                    <div class="row align-items-center">
+                        <div class="offset-xl-1 offset-lg-0 offset-sm-1 col-xxl-5 col-xl-5 col-lg-6 col-md-9 col-sm-11">
+                            <center>
+                                <form id="upload" enctype="multipart/form-data">
+                                    <!-- Gallery -->
+                                    <div class="gallery-container">
+                                        <input type="file" class="custom-file-input" id="gallery" accept="image/*">
+                                        <label class="custom-file-label" for="gallery"><i
+                                                class="fas fa-images"></i>&nbsp;&nbsp;Gallery</label>
+                                    </div>
+
+                                    <button type="submit" class="round-button">Predict</button>
+
+                                </form>
+                                <div class="label">Plant Type</div>
+                                <div id="plant"></div>
+                                <div class="label">Plant Condition</div>
+                                <div id="disease"></div>
+                                <div class="label">Confidence Level</div>
+                                <div id="probability"></div>
+
+                            </center>
+                        </div>
+                        <div class="col-xxl-6 col-xl-6 col-lg-6 col-md-12 prediction-container">
+
+                            <div class="about-img about-img1">
+                                <img src="{{ url_for('static', filename='assets/img/gallery/blank.jpg') }}"
+                                    id="predictedImage" alt>
+                                <img src="{{ url_for('static', filename='assets/img/icon/loader.gif') }}" id="loading">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <script src="{{ url_for('static', filename='assets/js/jquery-3.3.1.min.js') }}"></script>
+        <script>
+            // JavaScript to trigger file input when the label is clicked
+            const gallery = document.getElementById("gallery");
+            const customFileLabel = document.querySelector(".custom-file-label");
+
+
+            // Update the label text when a file is selected
+            gallery.addEventListener("change", () => {
+                if (gallery.files.length > 0) {
+                    customFileLabel.textContent = gallery.files[0].name;
+                } else {
+                    customFileLabel.textContent = "Select Image";
+                }
+            });
+
+        </script>
+        <script>
+            $(document).ready(function () {
+                // Function to handle image classification
+                $('#upload').submit(function (event) {
+                    event.preventDefault();
+
+                    // Get the selected image file
+                    var file = $("#gallery")[0].files[0];
+
+                    if (!$("#gallery")[0].files[0]) {
+                        console.log("No File Selected");
+                        $("#result").text("No File Selected");
+
+                    } else {
+                        console.log("Image From Gallery");
+                        var formData = new FormData();
+                        formData.append("file", file);
+
+                        $("#loading").show();
+
+                        // Send a POST request to the Flask endpoint
+                        $.ajax({
+                            url: "predict",
+                            type: "POST",
+                            data: formData,
+                            processData: false,
+                            contentType: false,
+
+                            success: function (response) {
+                                // Display the predicted result
+                                $(".label").show();
+                                $("#plant").text(response.plant);
+                                $("#disease").text(response.disease.replace('_',' '));
+                                $("#probability").text((response.probability * 100).toFixed(3) + '%');
+                                document.getElementById("predictedImage").src = response.path;
+                                $("#loading").hide();
+                            },
+
+                            error: function (xhr, status, error) {
+                                // Display an error message
+                                var errorMessage = "An error occurred: " + error;
+                                $("#result").text(errorMessage);
+                            },
+                        });
+                    }
+                });
+            });
+        </script>
+        <script src="{{ url_for('static', filename='assets/js/vendor/modernizr-3.5.0.min.js') }}"></script>
+        <script src="{{ url_for('static', filename='assets/js/popper.min.js') }}"></script>
+        <script src="{{ url_for('static', filename='assets/js/bootstrap.min.js') }}"></script>
+
+        <script src="{{ url_for('static', filename='assets/js/owl.carousel.min.js') }}"></script>
+        <script src="{{ url_for('static', filename='assets/js/slick.min.js') }}"></script>
+        <script src="{{ url_for('static', filename='assets/js/jquery.slicknav.min.js') }}"></script>
+        <script src="{{ url_for('static', filename='assets/js/countdown.min.js') }}"></script>
+
+        <script src="{{ url_for('static', filename='assets/js/wow.min.js') }}"></script>
+        <script src="{{ url_for('static', filename='assets/js/jquery.magnific-popup.js') }}"></script>
+        <script src="{{ url_for('static', filename='assets/js/jquery.nice-select.min.js') }}"></script>
+        <script src="{{ url_for('static', filename='assets/js/jquery.counterup.min.js') }}"></script>
+        <!-- <script src="{{ url_for('static', filename='assets/js/waypoints.min.js') }}"></script> -->
+
+        <script src="{{ url_for('static', filename='assets/js/contact.js') }}"></script>
+        <script src="{{ url_for('static', filename='assets/js/jquery.validate.min.js') }}"></script>
+        <script src="{{ url_for('static', filename='assets/js/mail-script.js') }}"></script>
+        <script src="{{ url_for('static', filename='assets/js/jquery.ajaxchimp.min.js') }}"></script>
+
+        <script src="{{ url_for('static', filename='assets/js/plugins.js') }}"></script>
+        <script src="{{ url_for('static', filename='assets/js/main.js') }}"></script>
+        <script>
+            window.dataLayer = window.dataLayer || [];
+            function gtag() { dataLayer.push(arguments); }
+            gtag('js', new Date());
+
+            gtag('config', 'UA-23581568-13');
+        </script>
+    </body>
+
+</html>
